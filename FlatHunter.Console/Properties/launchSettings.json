@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "FlatHunter.Console": {
+      "commandName": "Project",
+      "commandLineArgs": "Test"
+    }
+  }
+}

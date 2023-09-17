@@ -1,10 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "BkN60PGMCLh3NY7udpoV5mm4WQFZ2qsqZwc/+ysMOD73KvP0CQWaf/jBw4JABmv73lUKrCUvNyLQulAt0FQWmg==",
+  "dgSpecHash": "O8WYNVfcCaj82DsTBQbg44ebPAIt2g4FdEWoKdFMhwHOylPkUYBuLUkil27UDV0cOFXYN6gfVkqL9IpGAMhSug==",
   "success": true,
   "projectFilePath": "C:\\Informal\\Projects\\FlatHunter\\src\\FlatHunter.Console\\FlatHunter.Console.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\samw2\\.nuget\\packages\\basecli\\2.0.1\\basecli.2.0.1.nupkg.sha512",
+    "C:\\Users\\samw2\\.nuget\\packages\\basecli\\3.0.1\\basecli.3.0.1.nupkg.sha512",
     "C:\\Users\\samw2\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",
     "C:\\Users\\samw2\\.nuget\\packages\\microsoft.extensions.dependencyinjection\\7.0.0\\microsoft.extensions.dependencyinjection.7.0.0.nupkg.sha512",
     "C:\\Users\\samw2\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\7.0.0\\microsoft.extensions.dependencyinjection.abstractions.7.0.0.nupkg.sha512",
@@ -15,7 +15,6 @@
     "C:\\Users\\samw2\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512",
     "C:\\Users\\samw2\\.nuget\\packages\\selenium.support\\4.12.4\\selenium.support.4.12.4.nupkg.sha512",
     "C:\\Users\\samw2\\.nuget\\packages\\selenium.webdriver\\4.12.4\\selenium.webdriver.4.12.4.nupkg.sha512",
-    "C:\\Users\\samw2\\.nuget\\packages\\selenium.webdriver.chromedriver\\117.0.5938.6200\\selenium.webdriver.chromedriver.117.0.5938.6200.nupkg.sha512",
     "C:\\Users\\samw2\\.nuget\\packages\\system.drawing.common\\7.0.0\\system.drawing.common.7.0.0.nupkg.sha512",
     "C:\\Users\\samw2\\.nuget\\packages\\system.security.cryptography.cng\\4.5.0\\system.security.cryptography.cng.4.5.0.nupkg.sha512"
   ],

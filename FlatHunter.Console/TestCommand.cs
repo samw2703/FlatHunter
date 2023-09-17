@@ -1,19 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using BaseCLI;
+﻿using BaseCLI;
 using FlatHunter.Crawler.Selenium;
-using OpenQA.Selenium;
 
 namespace FlatHunter.Console;
 
 internal class TestCommand : ICommand<TestArgs>
 {
-    public void Execute(TestArgs args)
+    public async Task Execute(TestArgs args)
     {
-        WebBrowser.Launch().Test();
+        var task1 = Search("n19");
+        var task2 = Search("n5");
+        await Task.WhenAll(task1, task2);
     }
 
     public string Name { get; } = "Test";
@@ -21,6 +17,15 @@ internal class TestCommand : ICommand<TestArgs>
 
     public ArgInfoCollection<TestArgs> ArgInfoCollection { get; } = new ArgInfoBuilder<TestArgs>()
         .Build();
+
+    private Task Search(string area)
+    {
+        return Task.Run(() => WebBrowser.Launch()
+            .GoToRightmove()
+            .RejectCookies()
+            .EnterSearch(area)
+            .ClickToRent());
+    }
 }
 
 internal class TestArgs {}

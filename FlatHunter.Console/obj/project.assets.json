@@ -2,7 +2,7 @@
   "version": 3,
   "targets": {
     "net7.0": {
-      "BaseCLI/2.0.1": {
+      "BaseCLI/3.0.1": {
         "type": "package",
         "dependencies": {
           "Microsoft.Extensions.DependencyInjection": "7.0.0"
@@ -169,12 +169,6 @@
           "buildTransitive/Selenium.WebDriver.targets": {}
         }
       },
-      "Selenium.WebDriver.ChromeDriver/117.0.5938.6200": {
-        "type": "package",
-        "build": {
-          "build/_._": {}
-        }
-      },
       "System.Drawing.Common/7.0.0": {
         "type": "package",
         "dependencies": {
@@ -233,8 +227,7 @@
         "dependencies": {
           "FlatHunter.Crawler.Core": "1.0.0",
           "Selenium.Support": "4.12.4",
-          "Selenium.WebDriver": "4.12.4",
-          "Selenium.WebDriver.ChromeDriver": "117.0.5938.6200"
+          "Selenium.WebDriver": "4.12.4"
         },
         "compile": {
           "bin/placeholder/FlatHunter.Crawler.Selenium.dll": {}
@@ -246,14 +239,14 @@
     }
   },
   "libraries": {
-    "BaseCLI/2.0.1": {
-      "sha512": "25/7FjihPSXfQmAQ2Po2xOdAoMly6EFWpzDpfJKByEe5LCJ8wiVWx+SCSdDpo3tZxJ0ZhuukQ2k7FcULmAsoDw==",
+    "BaseCLI/3.0.1": {
+      "sha512": "7zlznJ2vlJc5MWYORYhzdKDOVZuBloygSOBnCxcfzgdNaE+H1h0Gp21l5B/f+mpU8l6xw2W47b1IKyiVickNyw==",
       "type": "package",
-      "path": "basecli/2.0.1",
+      "path": "basecli/3.0.1",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
-        "basecli.2.0.1.nupkg.sha512",
+        "basecli.3.0.1.nupkg.sha512",
         "basecli.nuspec",
         "lib/netstandard2.1/BaseCLI.dll"
       ]
@@ -530,29 +523,6 @@
         "selenium.webdriver.nuspec"
       ]
     },
-    "Selenium.WebDriver.ChromeDriver/117.0.5938.6200": {
-      "sha512": "Tp7KfynTaoRqK5osxyvPXhSw1zvAm9aDXZRp06Jg2qMFoLjsfohIsndHNrdtzOwojbkbs/0GfqksM8O7sVqe1Q==",
-      "type": "package",
-      "path": "selenium.webdriver.chromedriver/117.0.5938.6200",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "README.md",
-        "build/DefinePropertiesChromeDriver.targets",
-        "build/Selenium.WebDriver.ChromeDriver.targets",
-        "driver/linux64/LICENSE.chromedriver",
-        "driver/linux64/chromedriver",
-        "driver/mac64/LICENSE.chromedriver",
-        "driver/mac64/chromedriver",
-        "driver/mac64arm/LICENSE.chromedriver",
-        "driver/mac64arm/chromedriver",
-        "driver/win32/LICENSE.chromedriver",
-        "driver/win32/chromedriver.exe",
-        "nupkg-icon.png",
-        "selenium.webdriver.chromedriver.117.0.5938.6200.nupkg.sha512",
-        "selenium.webdriver.chromedriver.nuspec"
-      ]
-    },
     "System.Drawing.Common/7.0.0": {
       "sha512": "KIX+oBU38pxkKPxvLcLfIkOV5Ien8ReN78wro7OF5/erwcmortzeFx+iBswlh2Vz6gVne0khocQudGwaO1Ey6A==",
       "type": "package",
@@ -655,18 +625,18 @@
     },
     "FlatHunter.Crawler.Core/1.0.0": {
       "type": "project",
-      "path": "../../FlatHunter.Crawler.Core/FlatHunter.Crawler.Core.csproj",
-      "msbuildProject": "../../FlatHunter.Crawler.Core/FlatHunter.Crawler.Core.csproj"
+      "path": "../FlatHunter.Crawler.Core/FlatHunter.Crawler.Core.csproj",
+      "msbuildProject": "../FlatHunter.Crawler.Core/FlatHunter.Crawler.Core.csproj"
     },
     "FlatHunter.Crawler.Selenium/1.0.0": {
       "type": "project",
-      "path": "../../FlatHunter.Crawler.Selenium/FlatHunter.Crawler.Selenium.csproj",
-      "msbuildProject": "../../FlatHunter.Crawler.Selenium/FlatHunter.Crawler.Selenium.csproj"
+      "path": "../FlatHunter.Crawler.Selenium/FlatHunter.Crawler.Selenium.csproj",
+      "msbuildProject": "../FlatHunter.Crawler.Selenium/FlatHunter.Crawler.Selenium.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net7.0": [
-      "BaseCLI >= 2.0.1",
+      "BaseCLI >= 3.0.1",
       "FlatHunter.Crawler.Selenium >= 1.0.0"
     ]
   },
@@ -697,8 +667,8 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "projectReferences": {
-            "C:\\Informal\\Projects\\FlatHunter\\FlatHunter.Crawler.Selenium\\FlatHunter.Crawler.Selenium.csproj": {
-              "projectPath": "C:\\Informal\\Projects\\FlatHunter\\FlatHunter.Crawler.Selenium\\FlatHunter.Crawler.Selenium.csproj"
+            "C:\\Informal\\Projects\\FlatHunter\\src\\FlatHunter.Crawler.Selenium\\FlatHunter.Crawler.Selenium.csproj": {
+              "projectPath": "C:\\Informal\\Projects\\FlatHunter\\src\\FlatHunter.Crawler.Selenium\\FlatHunter.Crawler.Selenium.csproj"
             }
           }
         }
@@ -715,7 +685,7 @@
         "dependencies": {
           "BaseCLI": {
             "target": "Package",
-            "version": "[2.0.1, )"
+            "version": "[3.0.1, )"
           }
         },
         "imports": [

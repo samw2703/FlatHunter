@@ -2,6 +2,4 @@
 using BaseCLI;
 using FlatHunter.Console;
 
-Console.WriteLine("Hello, World!");
-
-CLI.Execute(args, new[] { typeof(TestArgs).Assembly }, services => { });
+await CLI.Execute(args, new[] { typeof(TestArgs).Assembly }, services => { });

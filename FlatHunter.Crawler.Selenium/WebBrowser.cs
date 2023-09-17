@@ -7,6 +7,9 @@ public static class WebBrowser
 {
     public static IHomePage Launch()
     {
-        return new HomePage(new ChromeDriver("C:\\Users\\samw2\\Desktop\\chromedriver.exe"));
+        var options = new ChromeOptions();
+        options.AddArgument("--start-maximized");
+        options.AddArgument("--disable-extensions");
+        return new HomePage(new ChromeDriver(@"C:\Users\samw2\Desktop\chromedriver.exe", options));
     }
 }

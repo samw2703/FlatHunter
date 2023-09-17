@@ -1,6 +1,8 @@
-﻿namespace FlatHunter.Crawler.Core;
+﻿using FlatHunter.Crawler.Core.Rightmove;
+
+namespace FlatHunter.Crawler.Core;
 
 public interface IHomePage
 {
-    void Test();
+    IRightmoveLandingPage GoToRightmove();
 }

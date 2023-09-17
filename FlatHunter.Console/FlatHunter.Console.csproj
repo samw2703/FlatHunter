@@ -8,11 +8,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="BaseCLI" Version="2.0.1" />
+    <PackageReference Include="BaseCLI" Version="3.0.1" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\FlatHunter.Crawler.Selenium\FlatHunter.Crawler.Selenium.csproj" />
+    <ProjectReference Include="..\FlatHunter.Crawler.Selenium\FlatHunter.Crawler.Selenium.csproj" />
   </ItemGroup>
 
 </Project>

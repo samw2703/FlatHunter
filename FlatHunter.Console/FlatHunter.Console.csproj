@@ -12,6 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\FlatHunter.Core.Json\FlatHunter.Core.Json.csproj" />
     <ProjectReference Include="..\FlatHunter.Crawler.Selenium\FlatHunter.Crawler.Selenium.csproj" />
   </ItemGroup>
 

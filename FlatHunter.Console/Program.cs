@@ -10,5 +10,12 @@ await CLI.Execute(args, new[] { typeof(TestArgs).Assembly }, AddServices);
 void AddServices(IServiceCollection services)
 {
     services.AddScoped<ConfigService>();
+    AddPropertyFinders(services);
     services.AddJsonServices();
+}
+
+void AddPropertyFinders(IServiceCollection services)
+{
+    services.AddScoped<IPropertyFinder, NoPropertyFinder>();
+    services.AddScoped<IPropertyFinder, RightmovePropertyFinder>();
 }

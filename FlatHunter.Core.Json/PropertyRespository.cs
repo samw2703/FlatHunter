@@ -13,7 +13,6 @@ internal class PropertyRespository : IPropertyRepository
     public async Task Save(Property property)
     {
         var properties = (await Get()).ToList();
-        var test = GetUniqueIdentifier(property);
         var existingProperty = properties.SingleOrDefault(x => GetUniqueIdentifier(x) == GetUniqueIdentifier(property));
         if (existingProperty == null)
             properties.Add(property);

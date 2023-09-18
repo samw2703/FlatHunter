@@ -680,19 +680,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\swatson\\.nuget\\packages\\": {}
+    "C:\\Users\\samw2\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Sources\\FlatHunter\\FlatHunter\\FlatHunter.Console\\FlatHunter.Console.csproj",
+      "projectUniqueName": "C:\\Informal\\Projects\\FlatHunter\\src\\FlatHunter.Console\\FlatHunter.Console.csproj",
       "projectName": "FlatHunter.Console",
-      "projectPath": "C:\\Sources\\FlatHunter\\FlatHunter\\FlatHunter.Console\\FlatHunter.Console.csproj",
-      "packagesPath": "C:\\Users\\swatson\\.nuget\\packages\\",
-      "outputPath": "C:\\Sources\\FlatHunter\\FlatHunter\\FlatHunter.Console\\obj\\",
+      "projectPath": "C:\\Informal\\Projects\\FlatHunter\\src\\FlatHunter.Console\\FlatHunter.Console.csproj",
+      "packagesPath": "C:\\Users\\samw2\\.nuget\\packages\\",
+      "outputPath": "C:\\Informal\\Projects\\FlatHunter\\src\\FlatHunter.Console\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\swatson\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\samw2\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -700,18 +700,17 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "https://api.nuget.org/v3/index.json": {},
-        "https://pkgs.dev.azure.com/GreenstonePlus/_packaging/GreenstonePlus/nuget/v3/index.json": {}
+        "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net7.0": {
           "targetAlias": "net7.0",
           "projectReferences": {
-            "C:\\Sources\\FlatHunter\\FlatHunter\\FlatHunter.Core.Json\\FlatHunter.Core.Json.csproj": {
-              "projectPath": "C:\\Sources\\FlatHunter\\FlatHunter\\FlatHunter.Core.Json\\FlatHunter.Core.Json.csproj"
+            "C:\\Informal\\Projects\\FlatHunter\\src\\FlatHunter.Core.Json\\FlatHunter.Core.Json.csproj": {
+              "projectPath": "C:\\Informal\\Projects\\FlatHunter\\src\\FlatHunter.Core.Json\\FlatHunter.Core.Json.csproj"
             },
-            "C:\\Sources\\FlatHunter\\FlatHunter\\FlatHunter.Crawler.Selenium\\FlatHunter.Crawler.Selenium.csproj": {
-              "projectPath": "C:\\Sources\\FlatHunter\\FlatHunter\\FlatHunter.Crawler.Selenium\\FlatHunter.Crawler.Selenium.csproj"
+            "C:\\Informal\\Projects\\FlatHunter\\src\\FlatHunter.Crawler.Selenium\\FlatHunter.Crawler.Selenium.csproj": {
+              "projectPath": "C:\\Informal\\Projects\\FlatHunter\\src\\FlatHunter.Crawler.Selenium\\FlatHunter.Crawler.Selenium.csproj"
             }
           }
         }

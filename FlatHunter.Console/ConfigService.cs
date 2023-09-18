@@ -13,5 +13,5 @@ public class ConfigService
 
 public class Config
 {
-
+    public List<string> Postcodes { get; set; } = new();
 }

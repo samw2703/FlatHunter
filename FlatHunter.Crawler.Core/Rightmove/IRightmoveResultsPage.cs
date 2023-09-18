@@ -4,5 +4,7 @@ public interface IRightmoveResultsPage
 {
     int GetPageCount();
     IRightmoveResultsPage GoToPage(int page);
-    (IRightmoveResultsPage Page, IEnumerable<string> AdvertLinks) GetAdvertLinks();
+    IEnumerable<string> GetAdvertLinks();
+    IEnumerable<string> GetCompanies();
+    void Close();
 }

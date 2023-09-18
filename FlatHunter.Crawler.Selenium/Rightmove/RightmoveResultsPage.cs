@@ -21,10 +21,23 @@ internal class RightmoveResultsPage : SeleniumWebPage, IRightmoveResultsPage
         return HandleNavigate(x => new RightmoveResultsPage(x));
     }
 
-    public (IRightmoveResultsPage Page, IEnumerable<string> AdvertLinks) GetAdvertLinks()
+    public IEnumerable<string> GetAdvertLinks()
     {
-        var links = GetHrefs(By.CssSelector(".propertyCard-link.property-card-updates"));
-
-        return (this, links);
+        return GetHrefs(By.CssSelector(".propertyCard-link.property-card-updates"));
     }
+
+    public IEnumerable<string> GetCompanies()
+    {
+        Thread.Sleep(1000);
+        var results = new List<string>();
+        Custom(driver =>
+        {
+            var elements = driver.FindElements(By.CssSelector(".propertyCard-section a.propertyCard-branchLogo-link"));
+            results = elements.Select(x => x.GetAttribute("title")).ToList();
+        });
+
+        return results;
+    }
+
+    public void Close() => CloseBrowser();
 }

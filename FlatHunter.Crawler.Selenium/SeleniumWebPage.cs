@@ -76,6 +76,10 @@ internal abstract class SeleniumWebPage
             .Select(x => x.GetAttribute("href"));
     }
 
+    protected void Custom(Action<IWebDriver> action) => action(_webDriver);
+
+    protected void CloseBrowser() => _webDriver.Close();
+
     private SelectElement GetSelect(By selector)
     {
         var dropdown = FindElement(selector);

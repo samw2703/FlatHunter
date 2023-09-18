@@ -26,7 +26,6 @@ internal class RightmovePropertyFinder : IPropertyFinder
             .SetMinPrice(2000).SetMaxPrice(3000)
             .ClickFindProperties()
             .GetAdvertLinks()
-            .AdvertLinks
             .Select(x => $"https://www.rightmove.co.uk/{x}")
             .ToList();
         return Task.FromResult(new List<Property>().AsEnumerable());

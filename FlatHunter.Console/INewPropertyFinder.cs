@@ -26,7 +26,7 @@ internal class RightmovePropertyFinder : IPropertyFinder
             .SetMinPrice(2000).SetMaxPrice(3000)
             .ClickFindProperties();
         var results = resultsPage.GetAdvertLinks()
-            .Select(x => Property.Create(EstateAgents.Rightmove, x))
+            .Select(x => Property.Create(EstateAgents.Rightmove, x));
         resultsPage.Close();
         return Task.FromResult(results);
     }

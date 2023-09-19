@@ -19,14 +19,22 @@ internal class FindNew : ICommand<FindNewArgs>
 
     public async Task Execute(FindNewArgs args)
     {
-        var properties = await FindAllProperties();
-        var newProperties = (await FilterExistingProperties(properties)).ToList();
+        try
+        {
+            var properties = await FindAllProperties();
+            var newProperties = (await FilterExistingProperties(properties)).ToList();
 
-        await Save(newProperties);
+            await Save(newProperties);
 
-        var urls = newProperties.Select(x => x.Url).ToList();
-        urls.ForEach(System.Console.WriteLine);
-        OpenTabs(urls);
+            var urls = newProperties.Select(x => x.Url).ToList();
+            urls.ForEach(System.Console.WriteLine);
+            OpenTabs(urls);
+        }
+        catch (Exception e)
+        {
+            System.Console.WriteLine(e);
+            throw;
+        }
     }
 
     private void OpenTabs(IEnumerable<string> urls)
@@ -59,23 +67,18 @@ internal class FindNew : ICommand<FindNewArgs>
 
     private async Task<IEnumerable<Property>> FindAllProperties()
     {
-        var postcodes = (await _configService.Get()).Postcodes;
+        return (await _propertyFinders.Select(FindAllProperties).WhenAllBatches(3))
+            .SelectMany(x => x);
+    }
+
+    private async Task<IEnumerable<Property>> FindAllProperties(IPropertyFinder propertyFinder)
+    {
         var results = new List<Property>();
-        foreach (var propertyFinder in _propertyFinders)
+        var postcodes = (await _configService.Get()).Postcodes;
+        foreach (var postcode in postcodes)
         {
-            foreach (var postcode in postcodes)
-            {
-                try
-                {
-                    var postcodeResults = (await propertyFinder.Find(postcode)).DistinctBy(x => x.Url);
-                    results.AddRange(postcodeResults);
-                }
-                catch (Exception e)
-                {
-                    System.Console.WriteLine(e);
-                    throw;
-                }
-            }
+            var postcodeResults = (await propertyFinder.Find(postcode)).DistinctBy(x => x.Url);
+            results.AddRange(postcodeResults);
         }
 
         return results;

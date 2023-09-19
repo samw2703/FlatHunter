@@ -5,12 +5,12 @@ namespace FlatHunter.Console;
 
 internal interface IPropertyFinder
 {
-    Task<IEnumerable<Property>> Find();
+    Task<IEnumerable<Property>> Find(string postCode);
 }
 
 internal class NoPropertyFinder : IPropertyFinder
 {
-    public Task<IEnumerable<Property>> Find()
+    public Task<IEnumerable<Property>> Find(string postCode)
     {
         return Task.FromResult(new List<Property>().AsEnumerable());
     }
@@ -18,16 +18,16 @@ internal class NoPropertyFinder : IPropertyFinder
 
 internal class RightmovePropertyFinder : IPropertyFinder
 {
-    public Task<IEnumerable<Property>> Find()
+    public Task<IEnumerable<Property>> Find(string postCode)
     {
-        var results = WebBrowser.Launch().GoToRightmove()
-            .RejectCookies().EnterSearch("n19").ClickToRent()
+        var resultsPage = WebBrowser.Launch().GoToRightmove()
+            .RejectCookies().EnterSearch(postCode).ClickToRent()
             .SetMinBedrooms(3).SetMaxBedrooms(3)
             .SetMinPrice(2000).SetMaxPrice(3000)
-            .ClickFindProperties()
-            .GetAdvertLinks()
-            .Select(x => $"https://www.rightmove.co.uk/{x}")
-            .ToList();
-        return Task.FromResult(new List<Property>().AsEnumerable());
+            .ClickFindProperties();
+        var results = resultsPage.GetAdvertLinks()
+            .Select(x => Property.Create(EstateAgents.Rightmove, x))
+        resultsPage.Close();
+        return Task.FromResult(results);
     }
 }

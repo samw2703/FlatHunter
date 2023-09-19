@@ -26,7 +26,7 @@ internal class TestCommand : ICommand<TestArgs>
             "n1",
             "n5",
             "n10",
-            "nw3",
+            "nw3"
         };
 
         postcodes.SelectMany(Search)

@@ -23,7 +23,7 @@ internal class RightmoveResultsPage : SeleniumWebPage, IRightmoveResultsPage
 
     public IEnumerable<string> GetAdvertLinks()
     {
-        return GetHrefs(By.CssSelector(".propertyCard-link.property-card-updates"));
+        return GetHrefs(By.CssSelector(".propertyCard-link.property-card-updates")).ToList();
     }
 
     public IEnumerable<string> GetCompanies()

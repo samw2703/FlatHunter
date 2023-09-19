@@ -14,4 +14,6 @@ public class ConfigService
 public class Config
 {
     public List<string> Postcodes { get; set; } = new();
+    public string ChromePath { get; set; }
+    public string ChromeDriverPath { get; set; }
 }

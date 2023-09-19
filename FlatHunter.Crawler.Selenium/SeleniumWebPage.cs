@@ -15,7 +15,7 @@ internal abstract class SeleniumWebPage : IWebPage
     protected SeleniumWebPage(IWebDriver webDriver, LoadWaitArgs args)
     {
         _webDriver = webDriver;
-        _loadWait = new LoadWait(args.Exists, args.DoesNotExist, _webDriver);
+        _loadWait = new LoadWait(args.Exists, args.DoesNotExist, args.WaitSeconds, _webDriver);
     }
 
     protected T GoTo<T>(string url, Func<IWebDriver, T> createPage) where T : SeleniumWebPage
@@ -109,13 +109,15 @@ internal abstract class SeleniumWebPage : IWebPage
     {
         private readonly By? _exists;
         private readonly By? _doesNotExist;
+        private readonly int? _waitSeconds;
         private readonly IWebDriver _webDriver;
 
-        public LoadWait(By? exists, By? doesNotExist, IWebDriver webDriver)
+        public LoadWait(By? exists, By? doesNotExist, int? waitSeconds, IWebDriver webDriver)
         {
             _exists = exists;
             _doesNotExist = doesNotExist;
             _webDriver = webDriver;
+            _waitSeconds = waitSeconds;
         }
 
         public bool CanContinue()
@@ -131,6 +133,12 @@ internal abstract class SeleniumWebPage : IWebPage
 
             if (_doesNotExist != null)
                 return _webDriver.TryFindElement(_doesNotExist) == null;
+
+            if (_waitSeconds.HasValue)
+            {
+                Thread.Sleep(_waitSeconds.Value * 1000);
+                return true;
+            }
             
             throw new Exception("LoadWait not configured properly");
         }
@@ -140,14 +148,17 @@ internal abstract class SeleniumWebPage : IWebPage
     {
         public By? Exists { get; }
         public By? DoesNotExist { get; }
+        public int? WaitSeconds { get; }
 
-        private LoadWaitArgs(By? exists, By? doesNotExist)
+        private LoadWaitArgs(By? exists, By? doesNotExist, int? waitSeconds)
         {
             Exists = exists;
             DoesNotExist = doesNotExist;
+            WaitSeconds = waitSeconds;
         }
 
-        public static LoadWaitArgs UntilExists(By by) => new(by, null);
-        public static LoadWaitArgs UntilDoesNotExist(By by) => new(by, null);
+        public static LoadWaitArgs UntilExists(By by) => new(by, null, null);
+        public static LoadWaitArgs UntilDoesNotExist(By by) => new(by, null, null);
+        public static LoadWaitArgs Lazy(int waitSeconds) => new(null, null, waitSeconds = 3);
     }
 }

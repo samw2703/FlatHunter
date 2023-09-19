@@ -1,10 +1,9 @@
 ﻿namespace FlatHunter.Crawler.Core.Rightmove;
 
-public interface IRightmoveResultsPage
+public interface IRightmoveResultsPage : IWebPage
 {
     int GetPageCount();
     IRightmoveResultsPage GoToPage(int page);
     IEnumerable<string> GetAdvertLinks();
     IEnumerable<string> GetCompanies();
-    void Close();
 }

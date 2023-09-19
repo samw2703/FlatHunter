@@ -1,6 +1,6 @@
 ﻿namespace FlatHunter.Crawler.Core.Rightmove;
 
-public interface IRightmoveFilterPage
+public interface IRightmoveFilterPage : IWebPage
 {
     IRightmoveFilterPage SetMinBedrooms(int value);
     IRightmoveFilterPage SetMaxBedrooms(int value);

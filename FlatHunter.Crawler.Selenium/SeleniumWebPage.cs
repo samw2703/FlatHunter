@@ -1,9 +1,10 @@
-﻿using OpenQA.Selenium;
+﻿using FlatHunter.Crawler.Core;
+using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 
 namespace FlatHunter.Crawler.Selenium;
 
-internal abstract class SeleniumWebPage
+internal abstract class SeleniumWebPage : IWebPage
 {
     private readonly IWebDriver _webDriver;
     private readonly LoadWait _loadWait;
@@ -78,7 +79,7 @@ internal abstract class SeleniumWebPage
 
     protected void Custom(Action<IWebDriver> action) => action(_webDriver);
 
-    protected void CloseBrowser() => _webDriver.Close();
+    public void CloseBrowser() => _webDriver.Close();
 
     private SelectElement GetSelect(By selector)
     {

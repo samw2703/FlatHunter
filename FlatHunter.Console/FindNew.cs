@@ -1,4 +1,5 @@
 ﻿using BaseCLI;
+using FlatHunter.Console.PropertyFinders;
 using FlatHunter.Core;
 using System.Diagnostics;
 

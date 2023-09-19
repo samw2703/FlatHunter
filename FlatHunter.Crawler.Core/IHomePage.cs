@@ -2,7 +2,8 @@
 
 namespace FlatHunter.Crawler.Core;
 
-public interface IHomePage
+public interface IHomePage : IWebPage
 {
     IRightmoveLandingPage GoToRightmove();
+
 }

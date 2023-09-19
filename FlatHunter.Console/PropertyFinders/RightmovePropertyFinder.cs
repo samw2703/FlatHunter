@@ -1,20 +1,7 @@
 ﻿using FlatHunter.Core;
 using FlatHunter.Crawler.Selenium;
 
-namespace FlatHunter.Console;
-
-internal interface IPropertyFinder
-{
-    Task<IEnumerable<Property>> Find(string postCode);
-}
-
-internal class NoPropertyFinder : IPropertyFinder
-{
-    public Task<IEnumerable<Property>> Find(string postCode)
-    {
-        return Task.FromResult(new List<Property>().AsEnumerable());
-    }
-}
+namespace FlatHunter.Console.PropertyFinders;
 
 internal class RightmovePropertyFinder : IPropertyFinder
 {
@@ -27,7 +14,7 @@ internal class RightmovePropertyFinder : IPropertyFinder
             .ClickFindProperties();
         var results = resultsPage.GetAdvertLinks()
             .Select(x => Property.Create(EstateAgents.Rightmove, x));
-        resultsPage.Close();
+        resultsPage.CloseBrowser();
         return Task.FromResult(results);
     }
 }

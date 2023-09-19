@@ -38,6 +38,4 @@ internal class RightmoveResultsPage : SeleniumWebPage, IRightmoveResultsPage
 
         return results;
     }
-
-    public void Close() => CloseBrowser();
 }

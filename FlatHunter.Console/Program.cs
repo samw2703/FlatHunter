@@ -1,5 +1,6 @@
 ﻿using BaseCLI;
 using FlatHunter.Console;
+using FlatHunter.Console.PropertyFinders;
 using FlatHunter.Core.Json;
 using Microsoft.Extensions.DependencyInjection;
 

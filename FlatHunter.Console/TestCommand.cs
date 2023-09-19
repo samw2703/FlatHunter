@@ -68,7 +68,7 @@ internal class TestCommand : ICommand<TestArgs>
             results.AddRange(page.GetCompanies());
         }
 
-        page.Close();
+        page.CloseBrowser();
         return results;
     }
 }

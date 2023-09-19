@@ -2,7 +2,7 @@
   "profiles": {
     "FlatHunter.Console": {
       "commandName": "Project",
-      "commandLineArgs": "find-new"
+      "commandLineArgs": "add-estate-agent -n Test"
     }
   }
 }

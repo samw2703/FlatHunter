@@ -1,4 +1,5 @@
 ﻿using BaseCLI;
+using FlatHunter.Console.PropertyFinders;
 using FlatHunter.Core;
 using FlatHunter.Crawler.Selenium;
 
@@ -15,6 +16,16 @@ internal class TestCommand : ICommand<TestArgs>
 
     public async Task Execute(TestArgs args)
     {
+        try
+        {
+            var test = await new SpareroomPropertyFinder().Find("n19");
+            System.Console.WriteLine();
+        }
+        catch (Exception e)
+        {
+            System.Console.WriteLine(e);
+            throw;
+        }
         System.Console.WriteLine("hey");
     }
 

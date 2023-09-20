@@ -21,4 +21,5 @@ public enum EstateAgents
 {
     Rightmove,
     OpenRent,
+    Spareroom,
 }

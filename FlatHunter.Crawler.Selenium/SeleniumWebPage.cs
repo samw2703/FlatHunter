@@ -75,7 +75,8 @@ internal abstract class SeleniumWebPage : IWebPage
     protected IEnumerable<string> GetHrefs(By selector)
     {
         return FindElements(selector)
-            .Select(x => x.GetAttribute("href"));
+            .Select(x => x.GetAttribute("href"))
+            .ToList();
     }
 
     protected void ScrollDownFor(int value)
@@ -88,6 +89,12 @@ internal abstract class SeleniumWebPage : IWebPage
             js.ExecuteScript("window.scrollTo(0, document.body.scrollHeight);");
             Thread.Sleep(250);
         }
+    }
+
+    protected void ScrollTo(By by)
+    {
+        var jsExecutor = (IJavaScriptExecutor)_webDriver;
+        jsExecutor.ExecuteScript("arguments[0].scrollIntoView(true);", _webDriver.FindElement(by));
     }
 
     protected void Custom(Action<IWebDriver> action) => action(_webDriver);

@@ -1,4 +1,5 @@
-﻿using FlatHunter.Crawler.Core.OpenRent;
+﻿using FlatHunter.Crawler.Core.Dexters;
+using FlatHunter.Crawler.Core.OpenRent;
 using FlatHunter.Crawler.Core.Rightmove;
 using FlatHunter.Crawler.Core.Spareroom;
 
@@ -9,4 +10,5 @@ public interface IHomePage : IWebPage
     IRightmoveLandingPage GoToRightmove();
     IOpenRentLandingPage GoToOpenRent();
     ISpareroomLandingPage GoToSpareroom();
+    IDextersLandingPage GoToDexters();
 }

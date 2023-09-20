@@ -20,7 +20,8 @@ internal class TestCommand : ICommand<TestArgs>
     {
         try
         {
-            var test = await new SpareroomPropertyFinder().Find("n19");
+            await InitData(new DextersPropertyFinder());
+            //var test = await new DextersPropertyFinder().Find("n19");
             System.Console.WriteLine();
         }
         catch (Exception e)

@@ -69,7 +69,9 @@ internal abstract class SeleniumWebPage : IWebPage
 
     protected T HandleNavigate<T>(Func<IWebDriver, T> createPage) where T : SeleniumWebPage
     {
-        return createPage(_webDriver);
+        var page = createPage(_webDriver);
+        page.WaitForLoad();
+        return page;
     }
 
     protected IEnumerable<string> GetHrefs(By selector)

@@ -2,6 +2,7 @@
 using FlatHunter.Console;
 using FlatHunter.Console.PropertyFinders;
 using FlatHunter.Core.Json;
+using FlatHunter.Crawler.Core.Dexters;
 using FlatHunter.Crawler.Core.Spareroom;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -17,8 +18,8 @@ void AddServices(IServiceCollection services)
 
 void AddPropertyFinders(IServiceCollection services)
 {
-    services.AddScoped<IPropertyFinder, NoPropertyFinder>();
     services.AddScoped<IPropertyFinder, RightmovePropertyFinder>();
     services.AddScoped<IPropertyFinder, OpenRentPropertyFinder>();
     services.AddScoped<IPropertyFinder, SpareroomPropertyFinder>();
+    services.AddScoped<IPropertyFinder, DextersPropertyFinder>();
 }

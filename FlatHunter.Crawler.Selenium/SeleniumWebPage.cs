@@ -1,5 +1,6 @@
 ﻿using FlatHunter.Crawler.Core;
 using OpenQA.Selenium;
+using OpenQA.Selenium.Interactions;
 using OpenQA.Selenium.Support.UI;
 
 namespace FlatHunter.Crawler.Selenium;
@@ -77,7 +78,21 @@ internal abstract class SeleniumWebPage : IWebPage
             .Select(x => x.GetAttribute("href"));
     }
 
+    protected void ScrollDownFor(int value)
+    {
+        var timeout = DateTime.Now.AddSeconds(value);
+        var js = (IJavaScriptExecutor)_webDriver;
+
+        while (DateTime.Now < timeout)
+        {
+            js.ExecuteScript("window.scrollTo(0, document.body.scrollHeight);");
+            Thread.Sleep(250);
+        }
+    }
+
     protected void Custom(Action<IWebDriver> action) => action(_webDriver);
+
+    protected string GetUrl() => _webDriver.Url;
 
     public void CloseBrowser() => _webDriver.Close();
 
@@ -159,6 +174,6 @@ internal abstract class SeleniumWebPage : IWebPage
 
         public static LoadWaitArgs UntilExists(By by) => new(by, null, null);
         public static LoadWaitArgs UntilDoesNotExist(By by) => new(by, null, null);
-        public static LoadWaitArgs Lazy(int waitSeconds) => new(null, null, waitSeconds = 3);
+        public static LoadWaitArgs Lazy(int waitSeconds = 5) => new(null, null, waitSeconds);
     }
 }

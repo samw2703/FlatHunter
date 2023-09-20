@@ -19,5 +19,6 @@ public class Property
 
 public enum EstateAgents
 {
-    Rightmove
+    Rightmove,
+    OpenRent,
 }

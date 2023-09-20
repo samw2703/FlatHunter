@@ -8,7 +8,7 @@ internal partial class AddEstateAgent
 
 namespace FlatHunter.Console.PropertyFinders;
 
-internal class {name}Finder : IPropertyFinder
+internal class {name}PropertyFinder : IPropertyFinder
 {{
 
 }}";

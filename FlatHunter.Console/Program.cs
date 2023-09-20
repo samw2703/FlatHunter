@@ -17,6 +17,6 @@ void AddServices(IServiceCollection services)
 void AddPropertyFinders(IServiceCollection services)
 {
     services.AddScoped<IPropertyFinder, NoPropertyFinder>();
-    //services.AddScoped<IPropertyFinder, RightmovePropertyFinder>();
+    services.AddScoped<IPropertyFinder, RightmovePropertyFinder>();
     services.AddScoped<IPropertyFinder, OpenRentPropertyFinder>();
 }

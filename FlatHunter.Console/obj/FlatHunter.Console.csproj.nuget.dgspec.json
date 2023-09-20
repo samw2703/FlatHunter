@@ -8,7 +8,7 @@
       "version": "1.0.0",
       "restore": {
         "projectUniqueName": "C:\\Informal\\Projects\\FlatHunter\\src\\FlatHunter.Console\\FlatHunter.Console.csproj",
-        "projectName": "FlatHunter.Console",
+        "projectName": "fhunt",
         "projectPath": "C:\\Informal\\Projects\\FlatHunter\\src\\FlatHunter.Console\\FlatHunter.Console.csproj",
         "packagesPath": "C:\\Users\\samw2\\.nuget\\packages\\",
         "outputPath": "C:\\Informal\\Projects\\FlatHunter\\src\\FlatHunter.Console\\obj\\",

@@ -8,10 +8,12 @@ namespace FlatHunter.Console;
 internal class TestCommand : ICommand<TestArgs>
 {
     private readonly IPropertyRepository _propertyRepository;
+    private readonly ConfigService _configService;
 
-    public TestCommand(IPropertyRepository propertyRepository)
+    public TestCommand(IPropertyRepository propertyRepository, ConfigService configService)
     {
         _propertyRepository = propertyRepository;
+        _configService = configService;
     }
 
     public async Task Execute(TestArgs args)
@@ -35,22 +37,42 @@ internal class TestCommand : ICommand<TestArgs>
     public ArgInfoCollection<TestArgs> ArgInfoCollection => new ArgInfoBuilder<TestArgs>()
         .Build();
 
-    private IEnumerable<string> Search(string area)
+    private async Task InitData(IPropertyFinder propertyFinder)
     {
-        var results = new List<string>();
-        var page = WebBrowser.Launch().GoToRightmove()
-            .RejectCookies().EnterSearch(area).ClickToRent()
-            .SetMinBedrooms(3).SetMaxBedrooms(3)
-            .SetMaxPrice(3500).ClickFindProperties();
-        var count = page.GetPageCount();
-        results.AddRange(page.GetCompanies());
-        for (int i = 2; i <= count; i++)
+        var properties = await FindAllProperties(propertyFinder);
+        var newProperties = await FilterExistingProperties(properties);
+
+        await Save(newProperties);
+    }
+
+    private async Task Save(IEnumerable<Property> properties)
+    {
+        foreach (var property in properties)
         {
-            page = page.GoToPage(i);
-            results.AddRange(page.GetCompanies());
+            await _propertyRepository.Save(property);
+        }
+    }
+
+    private async Task<IEnumerable<Property>> FilterExistingProperties(IEnumerable<Property> properties)
+    {
+        var existingProperties = await _propertyRepository.Get();
+        return properties
+            .Where(property => !existingProperties.Any(x => AreSame(x, property)));
+    }
+
+    private static bool AreSame(Property property1, Property property2)
+        => property1.EstateAgent == property2.EstateAgent && property1.Url == property2.Url;
+
+    private async Task<IEnumerable<Property>> FindAllProperties(IPropertyFinder propertyFinder)
+    {
+        var results = new List<Property>();
+        var postcodes = (await _configService.Get()).Postcodes;
+        foreach (var postcode in postcodes)
+        {
+            var postcodeResults = (await propertyFinder.Find(postcode)).DistinctBy(x => x.Url);
+            results.AddRange(postcodeResults);
         }
 
-        page.CloseBrowser();
         return results;
     }
 }

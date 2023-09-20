@@ -1,4 +1,5 @@
 ﻿using FlatHunter.Crawler.Core.Dexters;
+using FlatHunter.Crawler.Core.Kinleigh;
 using FlatHunter.Crawler.Core.OpenRent;
 using FlatHunter.Crawler.Core.Rightmove;
 using FlatHunter.Crawler.Core.Spareroom;
@@ -11,4 +12,5 @@ public interface IHomePage : IWebPage
     IOpenRentLandingPage GoToOpenRent();
     ISpareroomLandingPage GoToSpareroom();
     IDextersLandingPage GoToDexters();
+    IKinleighResultsPage GoToKinleigh(string postCode, int minPrice, int maxPrice, int bedrooms);
 }

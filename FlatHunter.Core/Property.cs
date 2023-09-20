@@ -23,4 +23,5 @@ public enum EstateAgents
     OpenRent,
     Spareroom,
     Dexters,
+    Kinleigh,
 }

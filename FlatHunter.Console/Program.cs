@@ -2,6 +2,7 @@
 using FlatHunter.Console;
 using FlatHunter.Console.PropertyFinders;
 using FlatHunter.Core.Json;
+using FlatHunter.Crawler.Core.Chestertons;
 using FlatHunter.Crawler.Core.Dexters;
 using FlatHunter.Crawler.Core.Kinleigh;
 using FlatHunter.Crawler.Core.Spareroom;
@@ -24,4 +25,5 @@ void AddPropertyFinders(IServiceCollection services)
     services.AddScoped<IPropertyFinder, SpareroomPropertyFinder>();
     services.AddScoped<IPropertyFinder, DextersPropertyFinder>();
     services.AddScoped<IPropertyFinder, KinleighPropertyFinder>();
+    services.AddScoped<IPropertyFinder, ChestertonsPropertyFinder>();
 }

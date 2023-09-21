@@ -20,9 +20,9 @@ internal class TestCommand : ICommand<TestArgs>
     {
         try
         {
-            var propertyFinder = new KinleighPropertyFinder();
-            //await InitData(propertyFinder);
-            var test = await propertyFinder.Find("n8");
+            var propertyFinder = new ChestertonsPropertyFinder();
+            await InitData(propertyFinder);
+            //var test = await propertyFinder.Find("n5");
             System.Console.WriteLine();
         }
         catch (Exception e)
@@ -43,6 +43,8 @@ internal class TestCommand : ICommand<TestArgs>
     {
         var properties = await FindAllProperties(propertyFinder);
         var newProperties = await FilterExistingProperties(properties);
+
+        System.Console.WriteLine($"Initialized {newProperties.Count()} records");
 
         await Save(newProperties);
     }

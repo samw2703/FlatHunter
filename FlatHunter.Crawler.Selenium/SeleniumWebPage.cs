@@ -103,6 +103,8 @@ internal abstract class SeleniumWebPage : IWebPage
 
     protected string GetUrl() => _webDriver.Url;
 
+    protected bool Exists(By by) => _webDriver.TryFindElement(by) != null;
+
     public void CloseBrowser() => _webDriver.Close();
 
     private SelectElement GetSelect(By selector)

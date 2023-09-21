@@ -1,9 +1,11 @@
 ﻿using FlatHunter.Crawler.Core;
+using FlatHunter.Crawler.Core.Chestertons;
 using FlatHunter.Crawler.Core.Dexters;
 using FlatHunter.Crawler.Core.Kinleigh;
 using FlatHunter.Crawler.Core.OpenRent;
 using FlatHunter.Crawler.Core.Rightmove;
 using FlatHunter.Crawler.Core.Spareroom;
+using FlatHunter.Crawler.Selenium.Chestertons;
 using FlatHunter.Crawler.Selenium.Dexters;
 using FlatHunter.Crawler.Selenium.Kinleigh;
 using FlatHunter.Crawler.Selenium.OpenRent;
@@ -37,5 +39,10 @@ internal class HomePage : SeleniumWebPage, IHomePage
     {
         var url = $"https://www.kfh.co.uk/search-results/?bedrooms={bedrooms}&category=RENTAL&currencyid=1&first=12&kfh=true&longlet=true&multiSearch=postal%3D{postCode}&nearme=false&newhomes=true&onlynewhomes=false&page=1&priceHighest={maxPrice}&priceLowest={minPrice}&riverside=false&shortlet=true&sort=HIGHEST&type=RESIDENTIAL&unavailable=false&underoffer=true";
         return GoTo(url, x => new KinleighResultsPage(x));
+    }
+
+    public IChestertonsLandingPage GoToChestertons()
+    {
+        return GoTo("https://www.chestertons.co.uk", x => new ChestertonsLandingPage(x));
     }
 }

@@ -24,4 +24,11 @@ public enum EstateAgents
     Spareroom,
     Dexters,
     Kinleigh,
+    Chestertons,
+    Foxtons,
+    Zoopla,
+    Rentola,
+    OnTheMarket,
+    BlackKatz,
+    StoneHouse,
 }

@@ -2,6 +2,7 @@
 using FlatHunter.Crawler.Core.Chestertons;
 using FlatHunter.Crawler.Core.Dexters;
 using FlatHunter.Crawler.Core.Kinleigh;
+using FlatHunter.Crawler.Core.OnTheMarket;
 using FlatHunter.Crawler.Core.OpenRent;
 using FlatHunter.Crawler.Core.Rentola;
 using FlatHunter.Crawler.Core.Rightmove;
@@ -9,6 +10,7 @@ using FlatHunter.Crawler.Core.Spareroom;
 using FlatHunter.Crawler.Selenium.Chestertons;
 using FlatHunter.Crawler.Selenium.Dexters;
 using FlatHunter.Crawler.Selenium.Kinleigh;
+using FlatHunter.Crawler.Selenium.OnTheMarket;
 using FlatHunter.Crawler.Selenium.OpenRent;
 using FlatHunter.Crawler.Selenium.Rentola;
 using FlatHunter.Crawler.Selenium.Rightmove;
@@ -50,4 +52,10 @@ internal class HomePage : SeleniumWebPage, IHomePage
 
     public IRentolaLandingPage GoToRentola()
         => GoTo("https://rentola.co.uk/", x => new RentolaLandingPage(x));
+
+    public IOnTheMarketResultsPage GoToOnTheMarket(string postCode, int minPrice, int maxPrice, int bedrooms)
+    {
+        var url = $"https://www.onthemarket.com/to-rent/{bedrooms}-bed-property/{postCode}/?max-price={maxPrice}&min-price={minPrice}&view=grid";
+        return GoTo(url, x => new OnTheMarketResultsPage(x));
+    }
 }

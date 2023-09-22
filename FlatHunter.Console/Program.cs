@@ -5,6 +5,7 @@ using FlatHunter.Core.Json;
 using FlatHunter.Crawler.Core.Chestertons;
 using FlatHunter.Crawler.Core.Dexters;
 using FlatHunter.Crawler.Core.Kinleigh;
+using FlatHunter.Crawler.Core.OnTheMarket;
 using FlatHunter.Crawler.Core.Rentola;
 using FlatHunter.Crawler.Core.Spareroom;
 using Microsoft.Extensions.DependencyInjection;
@@ -28,4 +29,5 @@ void AddPropertyFinders(IServiceCollection services)
     services.AddScoped<IPropertyFinder, KinleighPropertyFinder>();
     services.AddScoped<IPropertyFinder, ChestertonsPropertyFinder>();
     services.AddScoped<IPropertyFinder, RentolaPropertyFinder>();
+    services.AddScoped<IPropertyFinder, OnTheMarketPropertyFinder>();
 }

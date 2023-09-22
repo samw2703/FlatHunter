@@ -1,6 +1,7 @@
 ﻿using FlatHunter.Crawler.Core.Chestertons;
 using FlatHunter.Crawler.Core.Dexters;
 using FlatHunter.Crawler.Core.Kinleigh;
+using FlatHunter.Crawler.Core.OnTheMarket;
 using FlatHunter.Crawler.Core.OpenRent;
 using FlatHunter.Crawler.Core.Rentola;
 using FlatHunter.Crawler.Core.Rightmove;
@@ -17,4 +18,5 @@ public interface IHomePage : IWebPage
     IKinleighResultsPage GoToKinleigh(string postCode, int minPrice, int maxPrice, int bedrooms);
     IChestertonsLandingPage GoToChestertons();
     IRentolaLandingPage GoToRentola();
+    IOnTheMarketResultsPage GoToOnTheMarket(string postCode, int minPrice, int maxPrice, int bedrooms);
 }

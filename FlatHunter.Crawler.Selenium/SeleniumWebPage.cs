@@ -67,6 +67,8 @@ internal abstract class SeleniumWebPage : IWebPage
         return element.Text;
     }
 
+    protected int GetTextAsInt(By selector) => Convert.ToInt32(GetText(selector));
+
     protected T HandleNavigate<T>(Func<IWebDriver, T> createPage) where T : SeleniumWebPage
     {
         var page = createPage(_webDriver);

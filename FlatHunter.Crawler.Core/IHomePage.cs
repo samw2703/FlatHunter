@@ -6,6 +6,7 @@ using FlatHunter.Crawler.Core.OpenRent;
 using FlatHunter.Crawler.Core.Rentola;
 using FlatHunter.Crawler.Core.Rightmove;
 using FlatHunter.Crawler.Core.Spareroom;
+using FlatHunter.Crawler.Core.Zoopla;
 
 namespace FlatHunter.Crawler.Core;
 
@@ -19,4 +20,5 @@ public interface IHomePage : IWebPage
     IChestertonsLandingPage GoToChestertons();
     IRentolaLandingPage GoToRentola();
     IOnTheMarketResultsPage GoToOnTheMarket(string postCode, int minPrice, int maxPrice, int bedrooms);
+    IZooplaLandingPage GoToZoopla();
 }

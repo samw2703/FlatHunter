@@ -7,6 +7,7 @@ using FlatHunter.Crawler.Core.OpenRent;
 using FlatHunter.Crawler.Core.Rentola;
 using FlatHunter.Crawler.Core.Rightmove;
 using FlatHunter.Crawler.Core.Spareroom;
+using FlatHunter.Crawler.Core.Zoopla;
 using FlatHunter.Crawler.Selenium.Chestertons;
 using FlatHunter.Crawler.Selenium.Dexters;
 using FlatHunter.Crawler.Selenium.Kinleigh;
@@ -15,8 +16,8 @@ using FlatHunter.Crawler.Selenium.OpenRent;
 using FlatHunter.Crawler.Selenium.Rentola;
 using FlatHunter.Crawler.Selenium.Rightmove;
 using FlatHunter.Crawler.Selenium.Spareroom;
+using FlatHunter.Crawler.Selenium.Zoopla;
 using OpenQA.Selenium;
-using static System.Net.WebRequestMethods;
 
 namespace FlatHunter.Crawler.Selenium;
 
@@ -58,4 +59,7 @@ internal class HomePage : SeleniumWebPage, IHomePage
         var url = $"https://www.onthemarket.com/to-rent/{bedrooms}-bed-property/{postCode}/?max-price={maxPrice}&min-price={minPrice}&view=grid";
         return GoTo(url, x => new OnTheMarketResultsPage(x));
     }
+
+    public IZooplaLandingPage GoToZoopla()
+        => GoTo("https://www.zoopla.co.uk/", x => new ZooplaLandingPage(x));
 }

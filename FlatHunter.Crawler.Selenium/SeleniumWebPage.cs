@@ -114,6 +114,8 @@ internal abstract class SeleniumWebPage : IWebPage
 
     protected bool IsVisible(By by) => Exists(by) && FindElement(by).Displayed;
 
+    protected IDisposable SwitchToIFrame(By iframeSelector) => new IFrameSession(_webDriver, iframeSelector);
+
     public void CloseBrowser() => _webDriver.Close();
 
     private SelectElement GetSelect(By selector)
@@ -195,5 +197,21 @@ internal abstract class SeleniumWebPage : IWebPage
         public static LoadWaitArgs UntilExists(By by) => new(by, null, null);
         public static LoadWaitArgs UntilDoesNotExist(By by) => new(by, null, null);
         public static LoadWaitArgs Lazy(int waitSeconds = 5) => new(null, null, waitSeconds);
+    }
+
+    private class IFrameSession : IDisposable
+    {
+        private readonly IWebDriver _webDriver;
+
+        public IFrameSession(IWebDriver webDriver, By iframeSelector)
+        {
+            _webDriver = webDriver;
+            _webDriver.SwitchTo().Frame(_webDriver.FindElement(iframeSelector));
+        }
+
+        public void Dispose()
+        {
+            _webDriver.SwitchTo().DefaultContent();
+        }
     }
 }

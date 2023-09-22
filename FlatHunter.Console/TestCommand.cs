@@ -20,9 +20,9 @@ internal class TestCommand : ICommand<TestArgs>
     {
         try
         {
-            var propertyFinder = new ZooplaPropertyFinder();
-            //await InitData(propertyFinder);
-            var test = await propertyFinder.Find("n1");
+            var propertyFinder = new FoxtonsPropertyFinder();
+            await InitData(propertyFinder);
+            //var test = await propertyFinder.Find("n1");
             System.Console.WriteLine();
         }
         catch (Exception e)

@@ -2,6 +2,7 @@
 using FlatHunter.Console;
 using FlatHunter.Console.PropertyFinders;
 using FlatHunter.Core.Json;
+using FlatHunter.Crawler.Core.Foxtons;
 using Microsoft.Extensions.DependencyInjection;
 
 
@@ -25,4 +26,5 @@ void AddPropertyFinders(IServiceCollection services)
     services.AddScoped<IPropertyFinder, RentolaPropertyFinder>();
     services.AddScoped<IPropertyFinder, OnTheMarketPropertyFinder>();
     //services.AddScoped<IPropertyFinder, ZooplaPropertyFinder>();
+    services.AddScoped<IPropertyFinder, FoxtonsPropertyFinder>();
 }

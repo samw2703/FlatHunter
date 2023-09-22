@@ -1,6 +1,7 @@
 ﻿using FlatHunter.Crawler.Core;
 using FlatHunter.Crawler.Core.Chestertons;
 using FlatHunter.Crawler.Core.Dexters;
+using FlatHunter.Crawler.Core.Foxtons;
 using FlatHunter.Crawler.Core.Kinleigh;
 using FlatHunter.Crawler.Core.OnTheMarket;
 using FlatHunter.Crawler.Core.OpenRent;
@@ -10,6 +11,7 @@ using FlatHunter.Crawler.Core.Spareroom;
 using FlatHunter.Crawler.Core.Zoopla;
 using FlatHunter.Crawler.Selenium.Chestertons;
 using FlatHunter.Crawler.Selenium.Dexters;
+using FlatHunter.Crawler.Selenium.Foxtons;
 using FlatHunter.Crawler.Selenium.Kinleigh;
 using FlatHunter.Crawler.Selenium.OnTheMarket;
 using FlatHunter.Crawler.Selenium.OpenRent;
@@ -62,4 +64,9 @@ internal class HomePage : SeleniumWebPage, IHomePage
 
     public IZooplaLandingPage GoToZoopla()
         => GoTo("https://www.zoopla.co.uk/", x => new ZooplaLandingPage(x));
+
+    public IFoxtonsResultsPage GoToFoxtons(string postCode)
+        => GoTo(
+            $"https://www.foxtons.co.uk/properties-to-rent/{postCode}/3-bedroom?travel_%7Bn%7D_mode=public_transport&travel_%7Bn%7D_travel_time=45&order_by=price_desc&price_from=450&price_to=700",
+            x => new FoxtonsResultsPage(x));
 }

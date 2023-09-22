@@ -24,5 +24,5 @@ void AddPropertyFinders(IServiceCollection services)
     services.AddScoped<IPropertyFinder, ChestertonsPropertyFinder>();
     services.AddScoped<IPropertyFinder, RentolaPropertyFinder>();
     services.AddScoped<IPropertyFinder, OnTheMarketPropertyFinder>();
-    services.AddScoped<IPropertyFinder, ZooplaPropertyFinder>();
+    //services.AddScoped<IPropertyFinder, ZooplaPropertyFinder>();
 }

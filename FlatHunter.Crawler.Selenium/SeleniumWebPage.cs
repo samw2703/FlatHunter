@@ -81,6 +81,11 @@ internal abstract class SeleniumWebPage : IWebPage
             .ToList();
     }
 
+    protected string GetHref(By selector)
+    {
+        return FindElement(selector).GetAttribute("href");
+    }
+
     protected void ScrollDownFor(int value)
     {
         var timeout = DateTime.Now.AddSeconds(value);
@@ -104,6 +109,8 @@ internal abstract class SeleniumWebPage : IWebPage
     protected string GetUrl() => _webDriver.Url;
 
     protected bool Exists(By by) => _webDriver.TryFindElement(by) != null;
+
+    protected bool IsVisible(By by) => Exists(by) && FindElement(by).Displayed;
 
     public void CloseBrowser() => _webDriver.Close();
 

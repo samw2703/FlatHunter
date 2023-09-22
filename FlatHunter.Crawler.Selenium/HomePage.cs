@@ -3,12 +3,14 @@ using FlatHunter.Crawler.Core.Chestertons;
 using FlatHunter.Crawler.Core.Dexters;
 using FlatHunter.Crawler.Core.Kinleigh;
 using FlatHunter.Crawler.Core.OpenRent;
+using FlatHunter.Crawler.Core.Rentola;
 using FlatHunter.Crawler.Core.Rightmove;
 using FlatHunter.Crawler.Core.Spareroom;
 using FlatHunter.Crawler.Selenium.Chestertons;
 using FlatHunter.Crawler.Selenium.Dexters;
 using FlatHunter.Crawler.Selenium.Kinleigh;
 using FlatHunter.Crawler.Selenium.OpenRent;
+using FlatHunter.Crawler.Selenium.Rentola;
 using FlatHunter.Crawler.Selenium.Rightmove;
 using FlatHunter.Crawler.Selenium.Spareroom;
 using OpenQA.Selenium;
@@ -45,4 +47,7 @@ internal class HomePage : SeleniumWebPage, IHomePage
     {
         return GoTo("https://www.chestertons.co.uk", x => new ChestertonsLandingPage(x));
     }
+
+    public IRentolaLandingPage GoToRentola()
+        => GoTo("https://rentola.co.uk/", x => new RentolaLandingPage(x));
 }

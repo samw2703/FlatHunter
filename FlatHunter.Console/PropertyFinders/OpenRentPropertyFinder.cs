@@ -4,9 +4,9 @@ using OpenQA.Selenium;
 
 namespace FlatHunter.Console.PropertyFinders;
 
-internal class OpenRentPropertyFinder : IPropertyFinder
+internal class OpenRentPropertyFinder : BasePropertyFinder
 {
-    public Task<IEnumerable<Property>> Find(string postCode)
+    protected override Task<IEnumerable<Property>> DoFind(string postCode)
     {
         var page = WebBrowser.Launch()
             .GoToOpenRent().EnterSearch(postCode).ClickSearch()
@@ -17,5 +17,9 @@ internal class OpenRentPropertyFinder : IPropertyFinder
             .Select(x => Property.Create(EstateAgents.Rightmove, x));
         page.CloseBrowser();
         return Task.FromResult(properties);
+    }
+
+    public OpenRentPropertyFinder(ExceptionStore exceptionStore) : base(exceptionStore)
+    {
     }
 }

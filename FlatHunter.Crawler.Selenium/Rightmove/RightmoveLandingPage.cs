@@ -6,7 +6,7 @@ namespace FlatHunter.Crawler.Selenium.Rightmove;
 internal class RightmoveLandingPage: SeleniumWebPage, IRightmoveLandingPage
 {
     public RightmoveLandingPage(IWebDriver webDriver) 
-        : base(webDriver, LoadWaitArgs.UntilExists(By.Id("onetrust-reject-all-handler")))
+        : base(webDriver, LoadWaitArgs.Lazy())
     {
     }
 

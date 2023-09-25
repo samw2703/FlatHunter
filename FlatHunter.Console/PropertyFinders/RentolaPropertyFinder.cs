@@ -3,9 +3,9 @@ using FlatHunter.Crawler.Selenium;
 
 namespace FlatHunter.Console.PropertyFinders;
 
-internal class RentolaPropertyFinder : IPropertyFinder
+internal class RentolaPropertyFinder : BasePropertyFinder
 {
-    public Task<IEnumerable<Property>> Find(string postCode)
+    protected override Task<IEnumerable<Property>> DoFind(string postCode)
     {
         var page = WebBrowser.Launch().GoToRentola()
             .AcceptCookies().EnterSearch(postCode).ClickTopOption()
@@ -14,5 +14,9 @@ internal class RentolaPropertyFinder : IPropertyFinder
         page.CloseBrowser();
 
         return Task.FromResult(properties);
+    }
+
+    public RentolaPropertyFinder(ExceptionStore exceptionStore) : base(exceptionStore)
+    {
     }
 }

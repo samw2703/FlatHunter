@@ -1,4 +1,8 @@
 ﻿using FlatHunter.Core;
+using System.Collections.Generic;
+using System.Runtime.Intrinsics.X86;
+using System.Threading.Tasks;
+using System.Threading;
 
 namespace FlatHunter.Console;
 
@@ -6,20 +10,30 @@ internal static class TaskUtilities
 {
     public static async Task<IEnumerable<T>> WhenAllBatches<T>(this IEnumerable<Task<T>> tasks, int batchSize = 1)
     {
-        var results = new List<T>();
         var taskList = tasks.ToList();
-        var batchCount = (int)Math.Ceiling((decimal)taskList.Count / batchSize);
-        for (int i = 0; i < batchCount; i++)
+        using var semaphore = new SemaphoreSlim(batchSize);
+
+        foreach (var task in taskList)
         {
-            var isLastBatch = i == batchCount - 1;
-            var skip = i * batchSize;
-            var batch = isLastBatch
-                ? taskList.Skip(skip)
-                : taskList.Skip(skip).Take(batchSize);
-            results.AddRange(await batch.WhenAll());
+            await semaphore.WaitAsync(); // Wait until we can acquire a semaphore slot.
+
+            _ = task.ExecuteTaskWithSemaphore(semaphore);
         }
 
-        return results;
+        // Wait for all tasks to complete.
+        return await Task.WhenAll(taskList);
+    }
+
+    private static async Task<T> ExecuteTaskWithSemaphore<T>(this Task<T> task, SemaphoreSlim semaphore)
+    {
+        try
+        {
+            return await task;
+        }
+        finally
+        {
+            semaphore.Release();
+        }
     }
 
     private static async Task<IEnumerable<T>> WhenAll<T>(this IEnumerable<Task<T>> tasks) => await Task.WhenAll(tasks);

@@ -3,9 +3,9 @@ using FlatHunter.Crawler.Selenium;
 
 namespace FlatHunter.Console.PropertyFinders;
 
-internal class SpareroomPropertyFinder : IPropertyFinder
+internal class SpareroomPropertyFinder : BasePropertyFinder
 {
-    public Task<IEnumerable<Property>> Find(string postCode)
+    protected override Task<IEnumerable<Property>> DoFind(string postCode)
     {
         var page = WebBrowser.Launch().GoToSpareroom()
             .AcceptCookies().EnterSearch(postCode).ClickSearch()
@@ -17,5 +17,9 @@ internal class SpareroomPropertyFinder : IPropertyFinder
         page.CloseBrowser();
 
         return Task.FromResult(properties);
+    }
+
+    public SpareroomPropertyFinder(ExceptionStore exceptionStore) : base(exceptionStore)
+    {
     }
 }

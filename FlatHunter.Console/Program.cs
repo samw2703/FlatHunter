@@ -13,6 +13,7 @@ void AddServices(IServiceCollection services)
     services.AddScoped<ConfigService>();
     AddPropertyFinders(services);
     services.AddJsonServices();
+    services.AddScoped<ExceptionStore>();
 }
 
 void AddPropertyFinders(IServiceCollection services)
@@ -27,4 +28,9 @@ void AddPropertyFinders(IServiceCollection services)
     services.AddScoped<IPropertyFinder, OnTheMarketPropertyFinder>();
     //services.AddScoped<IPropertyFinder, ZooplaPropertyFinder>();
     services.AddScoped<IPropertyFinder, FoxtonsPropertyFinder>();
+}
+
+void AddOneHitPropertyFinders(IServiceCollection services)
+{
+    services.AddScoped<IOneHitPropertyFinder, StonehousePropertyFinder>();
 }

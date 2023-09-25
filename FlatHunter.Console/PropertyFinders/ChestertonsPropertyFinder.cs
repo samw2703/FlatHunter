@@ -3,9 +3,9 @@ using FlatHunter.Crawler.Selenium;
 
 namespace FlatHunter.Console.PropertyFinders;
 
-internal class ChestertonsPropertyFinder : IPropertyFinder
+internal class ChestertonsPropertyFinder : BasePropertyFinder
 {
-    public Task<IEnumerable<Property>> Find(string postCode)
+    protected override Task<IEnumerable<Property>> DoFind(string postCode)
     {
         var page = WebBrowser.Launch().GoToChestertons()
             .AcceptCookies().GoToResults(postCode, 2000, 3000, 3, 3);
@@ -13,5 +13,9 @@ internal class ChestertonsPropertyFinder : IPropertyFinder
         page.CloseBrowser();
 
         return Task.FromResult(properties);
+    }
+
+    public ChestertonsPropertyFinder(ExceptionStore exceptionStore) : base(exceptionStore)
+    {
     }
 }

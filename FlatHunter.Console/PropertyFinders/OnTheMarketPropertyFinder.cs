@@ -3,9 +3,9 @@ using FlatHunter.Crawler.Selenium;
 
 namespace FlatHunter.Console.PropertyFinders;
 
-internal class OnTheMarketPropertyFinder : IPropertyFinder
+internal class OnTheMarketPropertyFinder : BasePropertyFinder
 {
-    public Task<IEnumerable<Property>> Find(string postCode)
+    protected override Task<IEnumerable<Property>> DoFind(string postCode)
     {
         var page = WebBrowser.Launch().GoToOnTheMarket(postCode, 2000, 3000, 3);
         var pageCount = page.GetPageCount();
@@ -22,5 +22,9 @@ internal class OnTheMarketPropertyFinder : IPropertyFinder
         page.CloseBrowser();
 
         return Task.FromResult(properties);
+    }
+
+    public OnTheMarketPropertyFinder(ExceptionStore exceptionStore) : base(exceptionStore)
+    {
     }
 }

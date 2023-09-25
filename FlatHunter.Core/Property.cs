@@ -29,6 +29,5 @@ public enum EstateAgents
     Zoopla,
     Rentola,
     OnTheMarket,
-    BlackKatz,
-    StoneHouse,
+    Other
 }

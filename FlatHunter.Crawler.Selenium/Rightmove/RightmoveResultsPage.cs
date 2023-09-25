@@ -6,7 +6,7 @@ namespace FlatHunter.Crawler.Selenium.Rightmove;
 internal class RightmoveResultsPage : SeleniumWebPage, IRightmoveResultsPage
 {
     public RightmoveResultsPage(IWebDriver webDriver) 
-        : base(webDriver, LoadWaitArgs.UntilExists(By.CssSelector(".ksc_button.large.tertiary.addNewKeywordButton")))
+        : base(webDriver, LoadWaitArgs.Lazy())
     {
     }
 

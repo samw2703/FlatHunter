@@ -9,13 +9,18 @@ internal class FindNew : ICommand<FindNewArgs>
 {
     private readonly ConfigService _configService;
     private readonly IEnumerable<IPropertyFinder> _propertyFinders;
+    private readonly IEnumerable<IOneHitPropertyFinder> _oneHitPropertyFinders;
     private readonly IPropertyRepository _propertyRepository;
+    private readonly ExceptionStore _exceptionStore;
 
-    public FindNew(ConfigService configService, IEnumerable<IPropertyFinder> propertyFinders, IPropertyRepository propertyRepository)
+    public FindNew(ConfigService configService, IEnumerable<IPropertyFinder> propertyFinders, IPropertyRepository propertyRepository, 
+        ExceptionStore exceptionStore, IEnumerable<IOneHitPropertyFinder> oneHitPropertyFinders)
     {
         _configService = configService;
         _propertyFinders = propertyFinders;
         _propertyRepository = propertyRepository;
+        _exceptionStore = exceptionStore;
+        _oneHitPropertyFinders = oneHitPropertyFinders;
     }
 
     public async Task Execute(FindNewArgs args)
@@ -23,6 +28,9 @@ internal class FindNew : ICommand<FindNewArgs>
         try
         {
             var properties = await FindAllProperties();
+
+            _exceptionStore.Exceptions.ForEach(System.Console.WriteLine);
+
             var newProperties = (await FilterExistingProperties(properties)).ToList();
 
             await Save(newProperties);
@@ -36,6 +44,8 @@ internal class FindNew : ICommand<FindNewArgs>
             System.Console.WriteLine(e);
             throw;
         }
+
+
     }
 
     private void OpenTabs(IEnumerable<string> urls)
@@ -68,8 +78,29 @@ internal class FindNew : ICommand<FindNewArgs>
 
     private async Task<IEnumerable<Property>> FindAllProperties()
     {
-        return (await _propertyFinders.Select(FindAllProperties).WhenAllBatches(3))
-            .SelectMany(x => x);
+        var propertyFinders = _propertyFinders.ToArray();
+        var results = new List<Property>();
+
+        var batchCount = Math.Ceiling((decimal)_propertyFinders.Count() / 2);
+
+        for (int i = 0; i < batchCount; i++)
+        {
+            var task1 = FindAllProperties(_propertyFinders.ElementAt(i * 2));
+            var task2Index = (i * 2) + 1;
+            var task2 = (i * 2) + 1 < propertyFinders.Length
+                ? FindAllProperties(_propertyFinders.ElementAt(task2Index))
+                : Task.FromResult(new List<Property>().AsEnumerable());
+            await Task.WhenAll(task1, task2);
+            results.AddRange(task1.Result);
+            results.AddRange(task2.Result);
+        }
+
+        foreach (var oneHitPropertyFinder in _oneHitPropertyFinders)
+        {
+            results.AddRange(await oneHitPropertyFinder.Find());
+        }
+        
+        return results;
     }
 
     private async Task<IEnumerable<Property>> FindAllProperties(IPropertyFinder propertyFinder)

@@ -20,9 +20,16 @@ internal class TestCommand : ICommand<TestArgs>
     {
         try
         {
-            var propertyFinder = new FoxtonsPropertyFinder();
-            await InitData(propertyFinder);
+            //var propertyFinder = new ChestertonsPropertyFinder(new ExceptionStore());
+            //await InitData(propertyFinder);
             //var test = await propertyFinder.Find("n1");
+
+
+
+
+            var oneHitPropertyFinder = new StonehousePropertyFinder(new ExceptionStore());
+            await InitData(oneHitPropertyFinder);
+            //var test = (await oneHitPropertyFinder.Find()).ToList();
             System.Console.WriteLine();
         }
         catch (Exception e)
@@ -38,6 +45,16 @@ internal class TestCommand : ICommand<TestArgs>
 
     public ArgInfoCollection<TestArgs> ArgInfoCollection => new ArgInfoBuilder<TestArgs>()
         .Build();
+
+    private async Task InitData(IOneHitPropertyFinder oneHitPropertyFinder)
+    {
+        var properties = await oneHitPropertyFinder.Find();
+        var newProperties = await FilterExistingProperties(properties);
+
+        System.Console.WriteLine($"Initialized {newProperties.Count()} records");
+
+        await Save(newProperties);
+    }
 
     private async Task InitData(IPropertyFinder propertyFinder)
     {

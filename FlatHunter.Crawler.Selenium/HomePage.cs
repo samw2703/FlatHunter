@@ -26,7 +26,7 @@ namespace FlatHunter.Crawler.Selenium;
 internal class HomePage : SeleniumWebPage, IHomePage
 {
     public HomePage(IWebDriver webDriver) 
-        : base(webDriver, LoadWaitArgs.UntilExists(By.CssSelector("")))
+        : base(webDriver, LoadWaitArgs.Lazy(1))
     {
     }
 
@@ -69,4 +69,14 @@ internal class HomePage : SeleniumWebPage, IHomePage
         => GoTo(
             $"https://www.foxtons.co.uk/properties-to-rent/{postCode}/3-bedroom?travel_%7Bn%7D_mode=public_transport&travel_%7Bn%7D_travel_time=45&order_by=price_desc&price_from=450&price_to=700",
             x => new FoxtonsResultsPage(x));
+
+    public IHomePage GoTo(string url)
+    {
+        return GoTo(url, _ => this);
+    }
+
+    public IEnumerable<string> GetLinks(string cssSelector)
+    {
+        return GetHrefs(By.CssSelector(cssSelector));
+    }
 }

@@ -3,9 +3,9 @@ using FlatHunter.Crawler.Selenium;
 
 namespace FlatHunter.Console.PropertyFinders;
 
-internal class RightmovePropertyFinder : IPropertyFinder
+internal class RightmovePropertyFinder : BasePropertyFinder
 {
-    public Task<IEnumerable<Property>> Find(string postCode)
+    protected override Task<IEnumerable<Property>> DoFind(string postCode)
     {
         var resultsPage = WebBrowser.Launch().GoToRightmove()
             .RejectCookies().EnterSearch(postCode).ClickToRent()
@@ -16,5 +16,9 @@ internal class RightmovePropertyFinder : IPropertyFinder
             .Select(x => Property.Create(EstateAgents.Rightmove, x));
         resultsPage.CloseBrowser();
         return Task.FromResult(results);
+    }
+
+    public RightmovePropertyFinder(ExceptionStore exceptionStore) : base(exceptionStore)
+    {
     }
 }

@@ -23,4 +23,7 @@ public interface IHomePage : IWebPage
     IOnTheMarketResultsPage GoToOnTheMarket(string postCode, int minPrice, int maxPrice, int bedrooms);
     IZooplaLandingPage GoToZoopla();
     IFoxtonsResultsPage GoToFoxtons(string postCode);
+
+    IHomePage GoTo(string url);
+    IEnumerable<string> GetLinks(string cssSelector);
 }

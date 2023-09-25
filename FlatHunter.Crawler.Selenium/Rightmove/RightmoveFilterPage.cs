@@ -6,7 +6,7 @@ namespace FlatHunter.Crawler.Selenium.Rightmove;
 internal class RightmoveFilterPage: SeleniumWebPage, IRightmoveFilterPage
 {
     public RightmoveFilterPage(IWebDriver webDriver) 
-        : base(webDriver, LoadWaitArgs.UntilExists(By.Id("submit")))
+        : base(webDriver, LoadWaitArgs.Lazy())
     {
     }
 

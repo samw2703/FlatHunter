@@ -20,15 +20,15 @@ internal class TestCommand : ICommand<TestArgs>
     {
         try
         {
-            //var propertyFinder = new ChestertonsPropertyFinder(new ExceptionStore());
-            //await InitData(propertyFinder);
-            //var test = await propertyFinder.Find("n1");
+            var propertyFinder = new DavidAndrewPropertyFinder(new ExceptionStore());
+            await InitData(propertyFinder);
+            //var test = (await propertyFinder.Find("n19")).ToList();
 
 
 
 
-            var oneHitPropertyFinder = new StonehousePropertyFinder(new ExceptionStore());
-            await InitData(oneHitPropertyFinder);
+            //var oneHitPropertyFinder = new StonehousePropertyFinder(new ExceptionStore());
+            //await InitData(oneHitPropertyFinder);
             //var test = (await oneHitPropertyFinder.Find()).ToList();
             System.Console.WriteLine();
         }

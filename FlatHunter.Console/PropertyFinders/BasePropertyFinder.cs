@@ -1,4 +1,5 @@
 ﻿using FlatHunter.Core;
+using System;
 
 namespace FlatHunter.Console.PropertyFinders;
 

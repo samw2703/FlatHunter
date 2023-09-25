@@ -3,21 +3,18 @@ using FlatHunter.Crawler.Selenium;
 
 namespace FlatHunter.Console.PropertyFinders;
 
-internal abstract class SimpleOneHitPropertyFinder : BaseOneHitPropertyFinder
+internal abstract class SimplePropertyFinder : BasePropertyFinder
 {
-
     protected virtual int PreWait { get; set; } = 5;
-    protected abstract string Url { get; set; }
     protected abstract string CSSSelector { get; set; }
 
-    protected SimpleOneHitPropertyFinder(ExceptionStore exceptionStore) 
-        : base(exceptionStore)
+    protected SimplePropertyFinder(ExceptionStore exceptionStore) : base(exceptionStore)
     {
     }
 
-    protected override Task<IEnumerable<Property>> DoFind()
+    protected override Task<IEnumerable<Property>> DoFind(string postCode)
     {
-        var page = WebBrowser.Launch().GoTo(Url);
+        var page = WebBrowser.Launch().GoTo(GetUrl(postCode));
         Thread.Sleep(PreWait * 1000);
         var properties = page.GetLinks(CSSSelector)
             .Select(x => Property.Create(EstateAgents.Other, x));
@@ -25,4 +22,6 @@ internal abstract class SimpleOneHitPropertyFinder : BaseOneHitPropertyFinder
 
         return Task.FromResult(properties);
     }
+
+    protected abstract string GetUrl(string postCode);
 }

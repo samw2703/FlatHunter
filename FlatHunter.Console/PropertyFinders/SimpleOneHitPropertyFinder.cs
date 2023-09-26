@@ -5,7 +5,6 @@ namespace FlatHunter.Console.PropertyFinders;
 
 internal abstract class SimpleOneHitPropertyFinder : BaseOneHitPropertyFinder
 {
-
     protected virtual int PreWait { get; set; } = 5;
     protected abstract string Url { get; set; }
     protected abstract string CSSSelector { get; set; }

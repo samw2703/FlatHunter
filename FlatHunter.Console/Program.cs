@@ -30,9 +30,13 @@ void AddPropertyFinders(IServiceCollection services)
     //services.AddScoped<IPropertyFinder, ZooplaPropertyFinder>();
     services.AddScoped<IPropertyFinder, FoxtonsPropertyFinder>();
     services.AddScoped<IPropertyFinder, DavidAndrewPropertyFinder>();
+    services.AddScoped<IPropertyFinder, DavidAstburyPropertyFinder>();
+    services.AddScoped<IPropertyFinder, JeremyLeafPropertyFinder>();
 }
 
 void AddOneHitPropertyFinders(IServiceCollection services)
 {
     services.AddScoped<IOneHitPropertyFinder, StonehousePropertyFinder>();
+    services.AddScoped<IOneHitPropertyFinder, BurghleysPropertyFinder>();
+    services.AddScoped<IOneHitPropertyFinder, BlackKatzPropertyFinder>();
 }

@@ -20,8 +20,13 @@ internal class TestCommand : ICommand<TestArgs>
     {
         try
         {
-            var propertyFinder = new DavidAndrewPropertyFinder(new ExceptionStore());
-            await InitData(propertyFinder);
+            //await TestTest();
+
+
+
+
+            //var propertyFinder = new DavidAndrewPropertyFinder(new ExceptionStore());
+            //await InitData(propertyFinder);
             //var test = (await propertyFinder.Find("n19")).ToList();
 
 
@@ -38,6 +43,26 @@ internal class TestCommand : ICommand<TestArgs>
             throw;
         }
         System.Console.WriteLine("hey");
+    }
+
+    private async Task TestTest()
+    {
+        var finder1 = new BlackKatzPropertyFinder(new ExceptionStore());
+        var finder2 = new BurghleysPropertyFinder(new ExceptionStore());
+        var finder3 = new DavidAstburyPropertyFinder(new ExceptionStore());
+        var finder4 = new JeremyLeafPropertyFinder(new ExceptionStore());
+
+        //var test1 = (await finder1.Find()).ToList();
+        //var test2 = (await finder2.Find()).ToList();
+        //var test3 = (await finder3.Find("n8")).ToList();
+        //var test4 = (await finder4.Find("n2")).ToList();
+
+        await InitData(finder1);
+        await InitData(finder2);
+        await InitData(finder3);
+        await InitData(finder4);
+
+        System.Console.WriteLine();
     }
 
     public string Name => "Test";

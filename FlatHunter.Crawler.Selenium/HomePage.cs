@@ -79,4 +79,6 @@ internal class HomePage : SeleniumWebPage, IHomePage
     {
         return GetHrefs(By.CssSelector(cssSelector));
     }
+
+    public void Click(string cssSelector) => Click(By.CssSelector(cssSelector));
 }

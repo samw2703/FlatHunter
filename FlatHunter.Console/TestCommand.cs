@@ -25,8 +25,8 @@ internal class TestCommand : ICommand<TestArgs>
 
 
 
-            //var propertyFinder = new DavidAndrewPropertyFinder(new ExceptionStore());
-            //await InitData(propertyFinder);
+            var propertyFinder = new JTMHomesPropertyFinder(new ExceptionStore());
+            await InitData(propertyFinder);
             //var test = (await propertyFinder.Find("n19")).ToList();
 
 

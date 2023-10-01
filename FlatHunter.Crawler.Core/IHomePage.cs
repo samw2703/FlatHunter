@@ -26,4 +26,5 @@ public interface IHomePage : IWebPage
 
     IHomePage GoTo(string url);
     IEnumerable<string> GetLinks(string cssSelector);
+    void Click(string cssSelector);
 }

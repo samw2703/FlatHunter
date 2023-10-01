@@ -1,4 +1,5 @@
 ﻿using FlatHunter.Core;
+using FlatHunter.Crawler.Core;
 using FlatHunter.Crawler.Selenium;
 
 namespace FlatHunter.Console.PropertyFinders;
@@ -18,10 +19,15 @@ internal abstract class SimpleOneHitPropertyFinder : BaseOneHitPropertyFinder
     {
         var page = WebBrowser.Launch().GoTo(Url);
         Thread.Sleep(PreWait * 1000);
+        PostLoadProcessing(page);
         var properties = page.GetLinks(CSSSelector)
             .Select(x => Property.Create(EstateAgents.Other, x));
         page.CloseBrowser();
 
         return Task.FromResult(properties);
+    }
+
+    protected virtual void PostLoadProcessing(IHomePage page)
+    {
     }
 }

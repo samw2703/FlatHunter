@@ -25,13 +25,14 @@ void AddPropertyFinders(IServiceCollection services)
     services.AddScoped<IPropertyFinder, DextersPropertyFinder>();
     services.AddScoped<IPropertyFinder, KinleighPropertyFinder>();
     services.AddScoped<IPropertyFinder, ChestertonsPropertyFinder>();
-    services.AddScoped<IPropertyFinder, RentolaPropertyFinder>();
+    //services.AddScoped<IPropertyFinder, RentolaPropertyFinder>();
     services.AddScoped<IPropertyFinder, OnTheMarketPropertyFinder>();
     //services.AddScoped<IPropertyFinder, ZooplaPropertyFinder>();
     services.AddScoped<IPropertyFinder, FoxtonsPropertyFinder>();
     services.AddScoped<IPropertyFinder, DavidAndrewPropertyFinder>();
     services.AddScoped<IPropertyFinder, DavidAstburyPropertyFinder>();
     services.AddScoped<IPropertyFinder, JeremyLeafPropertyFinder>();
+    services.AddScoped<IPropertyFinder, JTMHomesPropertyFinder>();
 }
 
 void AddOneHitPropertyFinders(IServiceCollection services)

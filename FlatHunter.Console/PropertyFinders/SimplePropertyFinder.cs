@@ -1,4 +1,5 @@
 ﻿using FlatHunter.Core;
+using FlatHunter.Crawler.Core;
 using FlatHunter.Crawler.Selenium;
 
 namespace FlatHunter.Console.PropertyFinders;
@@ -16,6 +17,7 @@ internal abstract class SimplePropertyFinder : BasePropertyFinder
     {
         var page = WebBrowser.Launch().GoTo(GetUrl(postCode));
         Thread.Sleep(PreWait * 1000);
+        PostLoadProcessing(page);
         var properties = page.GetLinks(CSSSelector)
             .Select(x => Property.Create(EstateAgents.Other, x));
         page.CloseBrowser();
@@ -24,4 +26,8 @@ internal abstract class SimplePropertyFinder : BasePropertyFinder
     }
 
     protected abstract string GetUrl(string postCode);
+
+    protected virtual void PostLoadProcessing(IHomePage page)
+    {
+    }
 }
